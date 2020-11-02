@@ -1,4 +1,5 @@
 function [subjects, path, name, n_smp] = get_info_trial(t1, t2)
+global vicon
 if nargin == 0
     % Gather all of the information on the study   
     vicon = ViconNexus(); % Create an object of the ViconNexus class

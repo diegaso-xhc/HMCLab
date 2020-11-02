@@ -18,9 +18,9 @@ classdef Subject
             obj.traj_mat = [obj.traj_mat, obj.markers{i}.traj]; % Add each marker's trajectory to this matrix
          end         
          obj.out_names = vicon.GetModelOutputNames(obj.id_sub); % Names of the outputs for the current model
-         obj.out_val = {};
+         
          for i = 1: length(obj.out_names)
-             [obj.out_val{i}.data, obj.out_val{i}.exists] = vicon.GetModelOutput(obj.id_sub, obj.out_names{i}); % Get the values and a the exists boolean for each model outpu
+             obj.
          end
       end
    end

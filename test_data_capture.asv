@@ -2,7 +2,13 @@ clc
 clear all
 close all
 
+global vicon % Object of the class vicon, which allows the access and manipulation of trials' information
 st1 = Study(1500,4000); % Gather the information and data from a trial 
 st1.plot_mk(1, 24, 0); % Plot the marker 24 trajectory
 st1.plot_traj(); % Plot the motion study of subject 1 and subject 2
+
+
+
+names_outputs = vicon.GetModelOutputNames(st1.subjects{1}.id_sub);
+
 

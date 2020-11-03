@@ -4,13 +4,8 @@ if nargin == 0
     % Gather all of the information on the study   
     vicon = ViconNexus(); % Create an object of the ViconNexus class
     [subs, templates, active] = vicon.GetSubjectInfo(); % This function gets the subjects names, the type of element and a boolean showing which subject is active in the current trial
-    tmp = find(active == 0);
-    if ~isempty(tmp)
-       for i = 1: length(tmp) 
-          subs{tmp(i)} = []; % Assign an empty value to the inactive subjects on the trial
-       end
-    end    
-    subs = subs(~cellfun('isempty',subs)); % Remove empty cell arrays (corresponding to inactive objects on the motion trial)    
+    subs{active == 1} = []; % Consider only the subjects which are currently active
+    subs = subs(cellfun('isempty',subs)); % Remove empty cell arrays (corresponding to inactive objects on the motion trial)    
     [path, name] = vicon.GetTrialName(); % Get the trial name
     ls = length(subs); % Number of subjects on the study
     markers = {{}}; % Cell containing all of the markers from every subject
@@ -31,13 +26,8 @@ elseif nargin == 2
     % Gather the information on the study only on the given time range
     vicon = ViconNexus(); % Create an object of the ViconNexus class
     [subs, templates, active] = vicon.GetSubjectInfo(); % This function gets the subjects names, the type of element and a boolean showing which subject is active in the current trial
-    tmp = find(active == 0);
-    if ~isempty(tmp)
-       for i = 1: length(tmp) 
-          subs{tmp(i)} = []; % Assign an empty value to the inactive subjects on the trial
-       end
-    end    
-    subs = subs(~cellfun('isempty',subs)); % Remove empty cell arrays (corresponding to inactive objects on the motion trial)   
+    subs{active == 0} = []; % Consider only the subjects which are currently active
+    subs = subs(~cellfun('isempty',subs)); % Remove empty cell arrays (corresponding to inactive objects on the motion trial)
     [path, name] = vicon.GetTrialName(); % Get the trial name
     ls = length(subs); % Number of subjects on the study
     markers = {{}}; % Cell containing all of the markers from every subject

@@ -1,4 +1,4 @@
-classdef Subject
+classdef Subject < handle
    properties
       markers % These are the markers belonging to this subject      
       id_sub % This is the name of the subject   
@@ -6,6 +6,8 @@ classdef Subject
       traj_mat % This is a matrix of (n x 3*n_mk)
       out_names % These are the outputs names of the model
       out_val % Values of the outputs of the model
+      ax % These are the axes of the subject
+      n_smp % Number of sumples for this subject
    end   
    methods
       function obj = Subject(markers, id_sub)
@@ -21,7 +23,29 @@ classdef Subject
          obj.out_val = {};
          for i = 1: length(obj.out_names)
              [obj.out_val{i}.data, obj.out_val{i}.exists] = vicon.GetModelOutput(obj.id_sub, obj.out_names{i}); % Get the values and a the exists boolean for each model outpu
-         end
+         end    
+         obj.ax = NaN; % Not assigned unless, we need this information (to optimize computing speed)
+         obj.n_smp = size(obj.markers{1}.traj, 1); % Number of samples on this subject
+      end
+      function obj = build_results(obj)
+          ind_o = find_st_in_cell(obj.out_names, 'ORIGINRHand1');
+          ind_x = find_st_in_cell(obj.out_names, 'XAXISRHand1');
+          ind_y = find_st_in_cell(obj.out_names, 'YAXISRHand1');
+          ind_z = find_st_in_cell(obj.out_names, 'ZAXISRHand1');
+          o = obj.out_val{ind_o}.data;
+          x = obj.out_val{ind_x}.data;
+          y = obj.out_val{ind_y}.data;
+          z = obj.out_val{ind_z}.data;
+          x = x-o;
+          y = y-o;
+          z = z-o;
+          obj.ax = zeros(12, obj.n_smp);          
+          for i = 1: obj.n_smp
+              x(:, i) = x(:, i)/norm(x(:, i));
+              y(:, i) = y(:, i)/norm(y(:, i));
+              z(:, i) = z(:, i)/norm(z(:, i));
+          end
+          obj.ax = [o;x;y;z]; % Comprise reference axes within a single matrix
       end
    end
 end

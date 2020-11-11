@@ -6,8 +6,8 @@ close all
 st1 = Study(); % Gather the information and data from a trial 
 % st1.plot_mk(1, 24, 0); % Plot the marker 24 trajectory
 % st1.plot_traj(); % Plot the motion study of subject 1 and subject 2
-st1.subjects{1}.build_results();
-st1.plot_traj_ax(150);
+st1.subjects{2}.build_results();
+% st1.plot_traj_ax(2, 150);
 %% Plot output angles
 % close 
 % figure;
@@ -20,5 +20,5 @@ st1.plot_traj_ax(150);
 % plot(st1.subjects{1}.out_val{n}.data(3,:),'c')
 
 %% Save study
-save('Trial002','st1')
+save('Trial002_s2','st1')
 

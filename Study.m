@@ -64,7 +64,7 @@ classdef Study
                 end
             end
         end
-        function plot_traj_ax(obj, sc_f)            
+        function plot_traj_ax(obj, n, sc_f)            
             % sc_f is a scaling factor for the reference frame axes
             % sub is the subject for this plot
             figure;
@@ -84,14 +84,14 @@ classdef Study
             ylabel('Y')
             zlabel('Z')
             grid on
-            ls = length(obj.subjects); % Number of subjects
-            obj.subjects{1}.ax(4: 12, :) = obj.subjects{1}.ax(4: 12, :)*sc_f;
+            ls = length(obj.subjects); % Number of subjects            
+            obj.subjects{n}.ax(4: 12, :) = obj.subjects{n}.ax(4: 12, :)*sc_f;
             for t = 1: obj.n_smp
                 for i = 1: ls
                     X = obj.subjects{i}.traj_mat(t, 1:3:end)';
                     Y = obj.subjects{i}.traj_mat(t, 2:3:end)';
                     Z = obj.subjects{i}.traj_mat(t, 3:3:end)';                    
-                    if i == 1                        
+                    if i == n                        
                         set(h1Plot,'XData',X,'YData',Y,'ZData',Z);  
                         ax_o = obj.subjects{i}.ax(1: 3, t);
                         ax_x = obj.subjects{i}.ax(4: 6, t);

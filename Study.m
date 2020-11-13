@@ -46,6 +46,8 @@ classdef Study
             xlabel('X')
             ylabel('Y')
             zlabel('Z')
+            str = strcat('Trial:', '  ', obj.name(end-2: end));
+            title(str)
             grid on
             ls = length(obj.subjects); % Number of subjects
             for t = 1: obj.n_smp
@@ -67,7 +69,7 @@ classdef Study
         function plot_traj_ax(obj, n, sc_f)            
             % sc_f is a scaling factor for the reference frame axes
             % sub is the subject for this plot
-            figure;
+            fig1 = figure;
             h1Plot = plot3(NaN,NaN,NaN,'.r'); % Hand plot
             hold on
             h2Plot = plot3(NaN,NaN,NaN,'.b'); % Object plot
@@ -77,12 +79,18 @@ classdef Study
 %             h3PlotZ_ax = quiver3(NaN,NaN,NaN,NaN,NaN,NaN, 'c');
             axis('equal')
             pbaspect([1 1 1])            
-            xlim([-400 800])
-            ylim([200 1400])
-            zlim([-700 500])
+            xlim([0 600])
+            ylim([100 1000])
+            zlim([-20 450])
             xlabel('X')
             ylabel('Y')
             zlabel('Z')
+%             str = strcat('Trial:', '  ', obj.name(end-2: end));
+%             title(str)
+            title('Complex Object Manipulation')
+            view(25, 35);            
+            set(fig1,'Position',[0 50 1900 1200])
+
             grid on
             ls = length(obj.subjects); % Number of subjects            
             obj.subjects{n}.ax(4: 12, :) = obj.subjects{n}.ax(4: 12, :)*sc_f;

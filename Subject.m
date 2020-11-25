@@ -46,6 +46,19 @@ classdef Subject < handle
               z(:, i) = z(:, i)/norm(z(:, i));
           end
           obj.ax = [o;x;y;z]; % Comprise reference axes within a single matrix
-      end
+      end      
+   end
+   methods(Static)
+      function y = get_var_list(out_names)
+          % This function returns a list with the names of the variables
+          % and their order. Sometimes the output variables are ordered
+          % differently in the vicon software
+          l = length(out_names);
+          y = {};
+          for i = 1: l             
+             y{i, 1} = i;
+             y{i, 2} = out_names{i};
+          end          
+      end 
    end
 end

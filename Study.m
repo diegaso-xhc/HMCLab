@@ -93,7 +93,11 @@ classdef Study
 
             grid on
             ls = length(obj.subjects); % Number of subjects            
-            obj.subjects{n}.ax(4: 12, :) = obj.subjects{n}.ax(4: 12, :)*sc_f;
+            if any(obj.subjects{n}.ax(4: 12, :) >= 1)
+                obj.subjects{n}.ax(4: 12, :) = obj.subjects{n}.ax(4: 12, :);
+            else
+                obj.subjects{n}.ax(4: 12, :) = obj.subjects{n}.ax(4: 12, :)*sc_f;
+            end   
             for t = 1: obj.n_smp
                 for i = 1: ls
                     X = obj.subjects{i}.traj_mat(t, 1:3:end)';
@@ -148,7 +152,11 @@ classdef Study
 
             grid on
             ls = length(obj.subjects); % Number of subjects            
-            obj.subjects{n}.ax(4: 12, :) = obj.subjects{n}.ax(4: 12, :)*sc_f;
+            if any(obj.subjects{n}.ax(4: 12, :) >= 1)
+                obj.subjects{n}.ax(4: 12, :) = obj.subjects{n}.ax(4: 12, :);
+            else
+                obj.subjects{n}.ax(4: 12, :) = obj.subjects{n}.ax(4: 12, :)*sc_f;
+            end               
             for t = in_smp: end_smp
                 for i = 1: ls
                     X = obj.subjects{i}.traj_mat(t, 1:3:end)';

@@ -87,7 +87,7 @@ classdef Study
             zlabel('Z')
 %             str = strcat('Trial:', '  ', obj.name(end-2: end));
 %             title(str)
-            title('Complex Object Manipulation')
+%             title('Complex Object Manipulation')
             view(25, 35);            
             set(fig1,'Position',[250 250 950 600])
 
@@ -110,6 +110,7 @@ classdef Study
 %                         set(h3PlotX_ax, 'XData', ax_o(1), 'YData', ax_o(2), 'ZData', ax_o(3), 'UData', ax_x(1), 'VData', ax_x(2), 'WData', ax_x(3));
 %                         set(h3PlotY_ax, 'XData', ax_o(1), 'YData', ax_o(2), 'ZData', ax_o(3), 'UData', ax_y(1), 'VData', ax_y(2), 'WData', ax_y(3));
 %                         set(h3PlotZ_ax, 'XData', ax_o(1), 'YData', ax_o(2), 'ZData', ax_o(3), 'UData', ax_z(1), 'VData', ax_z(2), 'WData', ax_z(3));
+                        title(sprintf('Complet Object Manipulation N: %d',t))
                         hold on
                     else                        
                         set(h2Plot,'XData',X,'YData',Y, 'ZData', Z);
@@ -141,7 +142,7 @@ classdef Study
             zlabel('Z')
 %             str = strcat('Trial:', '  ', obj.name(end-2: end));
 %             title(str)
-            title('Complex Object Manipulation')
+%             title('Complex Object Manipulation')
             view(25, 35);            
             set(fig1,'Position',[250 250 950 600])
 
@@ -162,6 +163,7 @@ classdef Study
                         set(h3PlotX_ax, 'XData', ax_o(1), 'YData', ax_o(2), 'ZData', ax_o(3), 'UData', ax_x(1), 'VData', ax_x(2), 'WData', ax_x(3));
                         set(h3PlotY_ax, 'XData', ax_o(1), 'YData', ax_o(2), 'ZData', ax_o(3), 'UData', ax_y(1), 'VData', ax_y(2), 'WData', ax_y(3));
                         set(h3PlotZ_ax, 'XData', ax_o(1), 'YData', ax_o(2), 'ZData', ax_o(3), 'UData', ax_z(1), 'VData', ax_z(2), 'WData', ax_z(3));
+                        title(sprintf('Complet Object Manipulation N: %d',t))
                         hold on
                     else                        
                         set(h2Plot,'XData',X,'YData',Y, 'ZData', Z);

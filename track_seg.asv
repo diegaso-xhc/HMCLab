@@ -1,0 +1,33 @@
+function [traj, ang]  = track_seg(st, sub, seg, id)
+% This function returns the position of the markers involved in a desired
+% part of the hand. 
+% seg is the segment of the right hand we are interested in
+% typ is the type of element the segment represents, i.e. finger or set of markers
+% st is the study of interest
+n_mks = length(seg);
+traj = {};
+ang = {};
+if nargin == 4
+    if id == 'thumb'
+        id = 'RightThumb';
+    elseif id == 'index'
+        id = 'RightIndexFinger';
+    elseif id == 'third'
+        id = 'RightThirdFinger';
+    elseif id == 'ring'
+        id = 'RightRingFinger';
+    else id == 'pinkie'
+        id = 'RightPinkie';
+    end
+    out = [strcat(id, 'J1ProjAngles'), strcat(id, 'J1AbsAngles'), strcat(id, 'J2AbsAngles'), strcat(id, 'J3AbsAngles')]; % Output variables
+elseif nargin == 3
+    out = [];    
+end
+for i = 1: n_mks
+    ind = find_st_in_cell(st.subjects{sub}.list_mks, seg(i), 2); % Index of the marker of the segment
+    traj{i} = st.subjects{sub}.markers{ind}.traj; % Storage of trajectories of each marker    
+end
+for i 
+
+
+end

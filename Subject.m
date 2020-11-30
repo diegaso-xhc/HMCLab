@@ -60,5 +60,16 @@ classdef Subject < handle
              y{i, 2} = out_names{i};
           end          
       end 
+      function y = get_mks_list(mks)
+          % This function returns a list with the names of the markers
+          % and their order. Sometimes the marker names are ordered
+          % differently in the vicon software
+          l = length(mks);
+          y = {};
+          for i = 1: l             
+             y{i, 1} = i;
+             y{i, 2} = mks{i}.id_mk;
+          end          
+      end 
    end
 end

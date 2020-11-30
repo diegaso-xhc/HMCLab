@@ -19,7 +19,7 @@ y = st1.subjects{2}.get_var_list(st1.subjects{2}.out_names);
 
 figure;
 sub = 2;
-n = 16;
+n = 7;
 subplot(3, 1, 1)
 plot(st1.subjects{sub}.out_val{n}.data(1,:),'g')
 xlabel('No. of sample')
@@ -35,7 +35,16 @@ ylabel('Angle with respect to axis 3')
 
 sgtitle(y{n, 2})
 
-
+%% Calculate joint angles
+v1 = st1.subjects{2}.markers{24}.traj - st1.subjects{2}.markers{1}.traj;
+normv1 = vecnorm(v1, 2, 2);
+v1 = v1./normv1;
+v2 = st1.subjects{2}.markers{25}.traj - st1.subjects{2}.markers{24}.traj;
+normv2 = vecnorm(v2, 2, 2);
+v2 = v2./normv2;
+th = acos(dot(v1,v2,2));
+th = th*180/pi;
+figure; plot(th)
 %% Save study
-save('Trial002_s2','st1')
+% save('Trial002_s2','st1')
 

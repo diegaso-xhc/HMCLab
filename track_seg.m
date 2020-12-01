@@ -1,3 +1,5 @@
+% Developed by Diego Hidalgo C.
+
 function [traj, ang]  = track_seg(st, sub, seg, id)
 % This function returns the position of the markers involved in a desired
 % part of the hand.

@@ -1,3 +1,5 @@
+% Developed by Diego Hidalgo C.
+
 classdef Marker
    properties
       traj % This is an nx3 matrix containing the trajectory coordinates in time

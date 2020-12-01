@@ -1,3 +1,5 @@
+% Developed by Diego Hidalgo C.
+
 classdef Subject < handle
    properties
       markers % These are the markers belonging to this subject      

@@ -1,3 +1,5 @@
+% Developed by Diego Hidalgo C.
+
 %% Restart the program
 clear all
 close all

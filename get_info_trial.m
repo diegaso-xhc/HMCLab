@@ -1,3 +1,5 @@
+% Developed by Diego Hidalgo C.
+
 function [subjects, path, name, n_smp] = get_info_trial(t1, t2)
 global vicon
 if nargin == 0

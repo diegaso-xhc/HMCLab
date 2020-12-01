@@ -1,3 +1,5 @@
+% Developed by Diego Hidalgo C.
+
 %% Initialize modules
 % clc 
 % clear all

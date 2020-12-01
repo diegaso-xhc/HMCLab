@@ -1,3 +1,5 @@
+% Developed by Diego Hidalgo C.
+
 function [traj, ang] = snap_seg(traj_in, ang_in, n)
 % This function returns information on the trajectories and the angles of a
 % given segment for a single specified sample (such as a snapshot of the

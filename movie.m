@@ -1,3 +1,5 @@
+% Developed by Diego Hidalgo C.
+
 % Demo to create a movie file from a Gaussian and then optionally save it to disk as an avi video file.
 
 %==============================================================================================

@@ -1,3 +1,5 @@
+% Developed by Diego Hidalgo C.
+
 classdef Study
     properties
         subjects % These are the subjects belonging to this study

@@ -1,3 +1,5 @@
+% Developed by Diego Hidalgo C.
+
 function y = get_columns_for_excel(n)
 % This function returns a vector of strigns with the names of the columns
 % depending on a number of columns we need

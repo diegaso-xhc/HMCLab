@@ -1,3 +1,5 @@
+% Developed by Diego Hidalgo C.
+
 function ind = find_st_in_cell(c, st, ncl)
 % This function returns the index of a string on a given cell which
 % contains multiple strings, as for example on the model output names of

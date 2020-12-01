@@ -68,6 +68,33 @@ classdef Study
                 end
             end
         end
+        function plot_traj_sub(obj, sub)
+            % This function plots the movement of a given subject of the
+            % recording. Ths ubject needs to be specified
+            % sub is the number of subject
+            figure;
+            h1Plot = plot3(NaN,NaN,NaN,'.r'); % Hand plot
+            hold on
+            axis('equal')
+            pbaspect([1 1 1])            
+            xlim([-400 800])
+            ylim([200 1400])
+            zlim([-700 500])
+            xlabel('X')
+            ylabel('Y')
+            zlabel('Z')
+            str = strcat('Trial:', '  ', obj.name(end-2: end));
+            title(str)
+            grid on            
+            for t = 1: obj.n_smp                
+                X = obj.subjects{sub}.traj_mat(t, 1:3:end)';
+                Y = obj.subjects{sub}.traj_mat(t, 2:3:end)';
+                Z = obj.subjects{sub}.traj_mat(t, 3:3:end)';
+                set(h1Plot,'XData',X,'YData',Y, 'ZData', Z);
+                hold on
+                pause(0.001)
+            end
+        end
         function plot_traj_ax(obj, n, sc_f)            
             % sc_f is a scaling factor for the reference frame axes
             % sub is the subject for this plot
@@ -189,11 +216,13 @@ classdef Study
            m = [];
            ids = {};
            cnt = 0;
+           cols = {};
            for i = 1: nm
                % Storing the markers information
                cnt = cnt + 1;
                m = [m, obj.subjects{n}.markers{i}.traj];
                ids{cnt} = obj.subjects{n}.markers{i}.id_mk;
+               cols{cnt} = size(obj.subjects{n}.markers{i}.traj, 2);
            end
            nout = length(obj.subjects{n}.out_val);
            for i = 1: nout
@@ -201,12 +230,23 @@ classdef Study
                cnt = cnt + 1;
                m = [m, obj.subjects{n}.out_val{i}.data'];
                ids{cnt} = obj.subjects{n}.out_names{i};
-           end
+               cols{cnt} = size(obj.subjects{n}.out_val{i}.data, 1);
+           end           
            ntot = size(m, 2); % Total amount of columns needed
-           abc = get_columns_for_excel(ntot); % Gathering a vector of the column names that will be used in excel           
-           ids = repelem(ids,1,3); % Repeat each element of the cell three times (three coordinates for each output)
-           writecell(ids, strcat(name, '.xlsx')); % Write the names of the variables
-           writematrix(m, strcat(name, '.xlsx'),'Sheet',1,'Range',strcat('A2', ':', abc(ntot), num2str(obj.n_smp + 1))); % Write the matrix under this titles
+           ids_fn = {};
+           for i = 1: cnt
+               tmp = cell(1, cols{i});
+               tmp(:) = {ids{i}};
+               ids_fn = horzcat(ids_fn, tmp); 
+           end  
+           m_cell = num2cell(m);
+           record = vertcat(ids_fn, m_cell);
+           cell2csv(strcat(name, '.csv'), record, ',');
+           %% This section works well for Matlab 2020
+%            abc = get_columns_for_excel(ntot); % Gathering a vector of the column names that will be used in excel           
+%            ids = repelem(ids,1,3); % Repeat each element of the cell three times (three coordinates for each output)
+%            writecell(ids, strcat(name, '.xlsx')); % Write the names of the variables
+%            writematrix(m, strcat(name, '.xlsx'),'Sheet',1,'Range',strcat('A2', ':', abc(ntot), num2str(obj.n_smp + 1))); % Write the matrix under this titles
         end
    end
 end

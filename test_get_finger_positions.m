@@ -1,8 +1,14 @@
-%% Definition of fingers/palm/arm segments
+%% Restart the program
+clear all
+close all
+clc
 
+%% Loading the information from recordings
+load('Trial004_s2.mat')
 st1.subjects{1}.build_results();
 st1.subjects{2}.build_results();
 
+%% Definition of fingers/palm/arm segments
 thumb_finger = ["RH1", "RTH1", "RTH2", "RTH3"];
 index_finger = ["RH2", "RIF1", "RIF2", "RIF3"];
 third_finger = ["RH3", "RTF1", "RTF2", "RTF3"];

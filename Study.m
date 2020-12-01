@@ -181,5 +181,30 @@ classdef Study
                 end
             end
         end
+        function save_data(obj, n, name)
+           % This function saves the data to an excel file to be further used
+           nm = length(obj.subjects{n}.markers);                         
+           m = [];
+           ids = {};
+           cnt = 0;
+           for i = 1: nm
+               % Storing the markers information
+               cnt = cnt + 1;
+               m = [m, obj.subjects{n}.markers{i}.traj];
+               ids{cnt} = obj.subjects{n}.markers{i}.id_mk;
+           end
+           nout = length(obj.subjects{n}.out_val);
+           for i = 1: nout
+               % Storing the output information
+               cnt = cnt + 1;
+               m = [m, obj.subjects{n}.out_val{i}.data'];
+               ids{cnt} = obj.subjects{n}.out_names{i};
+           end
+           ntot = size(m, 2); % Total amount of columns needed
+           abc = get_columns_for_excel(ntot); % Gathering a vector of the column names that will be used in excel           
+           ids = repelem(ids,1,3); % Repeat each element of the cell three times (three coordinates for each output)
+           writecell(ids, strcat(name, '.xlsx')); % Write the names of the variables
+           writematrix(m, strcat(name, '.xlsx'),'Sheet',1,'Range',strcat('A2', ':', abc(ntot), num2str(obj.n_smp + 1))); % Write the matrix under this titles
+        end
    end
 end

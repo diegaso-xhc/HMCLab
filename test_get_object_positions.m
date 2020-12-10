@@ -20,16 +20,17 @@ palm = ["RH1", "RH2", "RH3", "RH4", "RH5", "RH6"];
 arm = ["RFA1", "RFA2", "RWRA", "RWRB", "RH1", "RH6"];
 seg = ["RH1", "RH2", "RH3"];
 axes = ["ORIGINRHand1", "XAXISRHand1", "YAXISRHand1", "ZAXISRHand1"];
+obj = ["Obj_mks1", "Obj_mks2", "Obj_mks3", "Obj_mks4", "Obj_mks5"];
 
-[traj, ang] = track_seg(st1, 2, axes, 'out');
+[traj, ang] = track_seg(st1, 1, obj, 'mk');
 % [traj, ang] = track_seg(st1, 2, index_finger, 'index');
 
-n_smp = 2000; %% 2000 for the second grasp
+n_smp = 750; %% 2000 for the second grasp
 % [traj, ang] = track_seg(st1, 2, index_finger, 'index');
 [traj_sn, ang_sn] = snap_seg(traj, ang, n_smp);
 data{1,1} = traj_sn;
 data{1,2} = ang_sn;
-save(strcat('T', num2str(n_smp), 'axes.mat'), 'data')
+save(strcat('Tob', num2str(n_smp), 'axes.mat'), 'data')
 
 % T = [st1.subjects{2}.ax(4:6, n_smp), st1.subjects{2}.ax(7:9, n_smp), st1.subjects{2}.ax(10:12, n_smp), st1.subjects{2}.ax(1:3, n_smp)];
 % T = [T; 0 0 0 1];

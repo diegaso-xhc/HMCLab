@@ -23,7 +23,7 @@ st1.subjects{2}.build_results();
 
 figure;
 sub = 2;
-n = 7;
+n = 11;
 subplot(3, 1, 1)
 plot(st1.subjects{sub}.out_val{n}.data(1,:),'g')
 xlabel('No. of sample')

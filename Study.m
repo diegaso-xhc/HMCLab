@@ -107,7 +107,7 @@ classdef Study
 %             h3PlotY_ax = quiver3(NaN,NaN,NaN,NaN,NaN,NaN, 'g');
 %             h3PlotZ_ax = quiver3(NaN,NaN,NaN,NaN,NaN,NaN, 'c');
             axis('equal')
-            pbaspect([1 1 1])            
+            pbaspect([1 1 1])
             xlim([0 600])
             ylim([100 1000])
             zlim([-20 450])
